@@ -1,4 +1,5 @@
-import CityCard from './CityCard/CityCard';
-import DayCard from './DayCard/DayCard';
+import WeatherCard from './WeatherCard/WeatherCard';
+import DaySelector from './DaySelector/DaySelector';
+import WeatherCharts from './WeatherCharts/WeatherCharts';
 
-export {CityCard, DayCard};
+export {WeatherCard, DaySelector, WeatherCharts};

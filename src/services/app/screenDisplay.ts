@@ -1,4 +1,4 @@
-import {Home, Start} from '../../app';
+import {Favourites, Home, Start} from '../../app';
 
 export const screenDisplay = [
   {
@@ -8,5 +8,9 @@ export const screenDisplay = [
   {
     name: 'Home',
     component: Home,
+  },
+  {
+    name: 'Favourites',
+    component: Favourites,
   },
 ];

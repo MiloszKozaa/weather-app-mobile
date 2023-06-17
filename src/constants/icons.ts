@@ -1,4 +1,5 @@
 import wind from '../assets/icons/fi-rr-wind.png';
+import rain from '../assets/icons/fi-rr-raindrops.png';
 import heart from '../assets/icons/fi-rr-heart.png';
 import heartFill from '../assets/icons/fi-rr-heart-fill.png';
 import marker from '../assets/icons/fi-rr-marker.png';
@@ -22,4 +23,5 @@ export default {
   arrowLeft,
   arrowRight,
   menu,
+  rain
 };
