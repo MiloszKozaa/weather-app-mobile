@@ -1,6 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {COLORS, FONTS, SIZES} from '../../constants';
-import {screenDisplay} from '../../services';
 
 const styles = StyleSheet.create({
   wrapper: {

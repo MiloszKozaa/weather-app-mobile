@@ -58,5 +58,7 @@
 		<string>Lexend-Regular.ttf</string>
 		<string>Lexend-SemiBold.ttf</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app needs to get your location...</string>
 </dict>
 </plist>

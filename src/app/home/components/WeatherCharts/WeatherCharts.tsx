@@ -1,11 +1,9 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './WeatherCharts.styles';
-import {Icon, Chart, Loading} from '../../../../components';
+import {Icon, Chart} from '../../../../components';
 import {COLORS} from '../../../../constants';
-import {IChart} from '../../../../models/chart/chart';
 import {selectableWeatherCharts} from '../../../../services';
-import {ISelectableChart} from '../../../../models/chart/selectableChart';
 import {IForecast} from '../../../../models/weather/forecast';
 
 interface IWeatherCharts {

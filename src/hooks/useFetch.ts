@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {IResponse} from '../models/api/response';
+import { postApi } from '../services';
 
 export const useFetch = <IData>(endpoint: string, body: any) => {
   const [data, setData] = useState<IData>();
@@ -8,31 +8,18 @@ export const useFetch = <IData>(endpoint: string, body: any) => {
 
   const [error, setError] = useState<string>('');
 
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-    credentials: 'include' as RequestCredentials_,
-  };
-
   const fetchData = async () => {
     setIsLoading(true);
 
-    const response = await fetch(
-      `https://weather-app-mobile-server.vercel.app/${endpoint}`,
-      options,
-    );
+    const response = await postApi(endpoint, body)
 
-    const dataResponse: IResponse<IData> = await response.json();
-    if (dataResponse.status < 200 && dataResponse.status >= 300) {
-      setError(dataResponse.error);
+    if (response.status < 200 && response.status >= 300) {
+      setError(response.error);
       setIsLoading(false);
       return;
     }
 
-    setData(dataResponse.data as IData);
+    setData(response.data as IData);
     setIsLoading(false);
     return;
   };

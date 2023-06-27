@@ -1,4 +1,4 @@
-import {ICity} from '../../models/weather/city';
+import {ICity} from '../../models/city/city';
 
 export const getCityName = (city: ICity) => {
   const cityName =

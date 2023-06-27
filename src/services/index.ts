@@ -1,6 +1,25 @@
-import {screenDisplay} from './app/screenDisplay';
-import { getBarHeight } from './chart/getBarHeight';
-import { getBarWidth } from './chart/getBarWidth';
-import { selectableWeatherCharts } from './weather/weatherCharts';
+import {getBarHeight} from './chart/getBarHeight';
+import {getBarWidth} from './chart/getBarWidth';
+import {selectableWeatherCharts} from './weather/weatherCharts';
+import {
+  getFavCities,
+  removeFavCity,
+  setFavCity,
+} from './storage/favCityStorage';
+import {getItem, setItem, removeItem} from './storage/storage';
+import {getLocation} from './location/getLocation';
+import { postApi } from './api/callApi';
 
-export {screenDisplay, getBarWidth, getBarHeight, selectableWeatherCharts};
+export {
+  getBarWidth,
+  getBarHeight,
+  selectableWeatherCharts,
+  getFavCities,
+  removeFavCity,
+  setFavCity,
+  getItem,
+  setItem,
+  removeItem,
+  getLocation,
+  postApi
+};

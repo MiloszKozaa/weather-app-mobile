@@ -4,7 +4,7 @@ import {COLORS, FONTS, SIZES} from '../../constants';
 const buttonStyles = StyleSheet.create({
   wrapper: {},
   button: {
-    width: '80%',
+    width: '100%',
     height: 65,
     borderRadius: SIZES.medium,
     padding: SIZES.medium,

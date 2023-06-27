@@ -1,13 +1,19 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import Lottie from 'lottie-react-native';
-import {animations} from '../../constants';
+import {StorageKeys, animations} from '../../constants';
 import styles from './Start.styles';
 import {Button} from '../../components';
+import {setItem} from '../../services';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParams } from '../../../App';
 
-const Start = ({navigation}: any) => {
-  const onButtonClick = () => {
-    navigation.navigate('Home');
+type Props = NativeStackScreenProps<RootStackParams, 'Start'>;
+
+const Start = ({navigation, route}: Props) => {
+  const onButtonClick = async () => {
+    navigation.navigate('Home', route.params);
+    await setItem(StorageKeys.WAS_DISPLAYED, 'yes');
   };
 
   return (
@@ -16,6 +22,7 @@ const Start = ({navigation}: any) => {
         style={styles.backgroundScreen}
         source={animations.startBackground}
         autoPlay
+        loop
         resizeMode="cover"
       />
       <View style={styles.header}>
@@ -24,7 +31,9 @@ const Start = ({navigation}: any) => {
           The most pleasant way to plan your next day
         </Text>
       </View>
-      <Button name="Get Started" onClick={onButtonClick} isHighlighted />
+      <View style={styles.button}>
+        <Button name="Get Started" onClick={onButtonClick} isHighlighted />
+      </View>
     </View>
   );
 };

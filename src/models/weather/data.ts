@@ -1,4 +1,4 @@
-import {ICity} from './city';
+import {ICity} from '../city/city';
 import {ICurrentWeather} from './current';
 import {IForecast} from './forecast';
 

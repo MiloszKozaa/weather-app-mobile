@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'absolute',
   },
+  button: {
+    width: '80%',
+  },
 });
 
 export default styles;

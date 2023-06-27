@@ -1,5 +1,5 @@
 export interface IResponse<IData> {
   status: number;
-  data: IData;
+  data: IData | {};
   error: string;
 }
