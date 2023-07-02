@@ -1,5 +1,5 @@
-import {View,  ScrollView} from 'react-native';
-import React, { useState} from 'react';
+import {View, ScrollView} from 'react-native';
+import React, {useState} from 'react';
 import {ISearchCity} from '../../models/city/city';
 import appStyles from '../../styles';
 import {Button, Header, Icon, Input, Navbar} from '../../components';
@@ -18,13 +18,16 @@ type Props = NativeStackScreenProps<RootStackParams, 'Search'>;
 
 const Search = ({navigation}: Props) => {
   const [cities, setCities] = useState<ISearchCity[]>([]);
+  const [cityName, setCityName] = useState('');
 
   const goToHome = (coord: ICoord) => {
     navigation.navigate('Home', coord);
   };
 
-  const searchCities = async (name: string) => {
-    const response = await postApi<ISearchCity[]>('api/search', {name: name});
+  const searchCities = async () => {
+    const response = await postApi<ISearchCity[]>('api/search', {
+      name: cityName,
+    });
 
     setCities(response.data as ISearchCity[]);
   };
@@ -42,12 +45,17 @@ const Search = ({navigation}: Props) => {
           main="Search"
           description="Type city name to check the weater and plan your next day"
         />
-        <Input onClick={e => searchCities(e.nativeEvent.text)} />
+        <Input
+          value={cityName}
+          onChange={e => setCityName(e.nativeEvent.text)}
+          onClick={searchCities}
+          autoFocus
+        />
 
         {cities.map((city, key) => (
           <Button
             key={key}
-            name={`${city.name}, ${city.state}`}
+            name={`${city.name}, ${city.country}`}
             onClick={() => goToHome(city.coord)}
           />
         ))}
