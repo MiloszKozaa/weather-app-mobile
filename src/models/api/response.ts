@@ -1,5 +1,3 @@
-export interface IResponse<IData> {
-  status: number;
-  data: IData | {};
-  error: string;
-}
+export type IResponse<IData> =
+  | {status: 'success'; data: IData}
+  | {status: 'error'; message: string};

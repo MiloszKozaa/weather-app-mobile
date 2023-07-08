@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
     fontSize: SIZES.xSmall,
   },
   label: {
-    fontFamily: FONTS.semiBold,
+    fontFamily: FONTS.regular,
     fontSize: SIZES.small,
     paddingVertical: 5,
-    color: COLORS.accessory,
+    color: COLORS.white,
   },
 });
 

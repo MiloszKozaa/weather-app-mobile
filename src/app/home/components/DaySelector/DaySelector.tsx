@@ -15,8 +15,8 @@ interface IDaySelector {
 const DaySelector = ({isFocused, day, dateNumber, onClick}: IDaySelector) => {
   const backgroundStyle = isFocused
     ? appStyles.wrapperColor
-    : appStyles.wrapperBorder;
-  const textColor = {color: isFocused ? COLORS.white : COLORS.accessory};
+    : appStyles.wrapperFill;
+  const textColor = {color: COLORS.white};
 
   return (
     <TouchableOpacity style={styles.wrapper} onPress={onClick}>

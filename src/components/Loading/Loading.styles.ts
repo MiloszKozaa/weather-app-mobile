@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.medium,
     height: '100%',
     width: '100%',
+    overflow: 'hidden',
   },
 });
 

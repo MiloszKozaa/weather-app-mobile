@@ -33,23 +33,30 @@ const WeatherCharts = ({forecast, date}: IWeatherCharts) => {
     };
   });
 
+  const isIconSelected = (type: string) => displayedType === type;
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.header}>
-        <Text style={styles.unit}>{displayedChart.unit}</Text>
+        <Text style={styles.unit}>
+          {displayedChart.unit}
+        </Text>
         <View style={styles.buttonsWrapper}>
-          {selectableWeatherCharts.map(({icon, type, color}, key) => (
-            <Icon
-              key={key}
-              source={icon}
-              onClick={() => setDisplayedType(type)}
-              customStyle={{
-                ...styles.button,
-                backgroundColor:
-                  displayedType === type ? color : COLORS.background,
-              }}
-            />
-          ))}
+          {selectableWeatherCharts.map(
+            ({icon, iconSelected, type, color}, key) => (
+              <Icon
+                key={key}
+                source={!isIconSelected(type) ? icon : iconSelected}
+                onClick={() => setDisplayedType(type)}
+                customStyle={{
+                  ...styles.button,
+                  backgroundColor: isIconSelected(type)
+                    ? color
+                    : COLORS.background,
+                }}
+              />
+            ),
+          )}
         </View>
       </View>
 

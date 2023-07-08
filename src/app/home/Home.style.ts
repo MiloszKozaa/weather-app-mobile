@@ -8,6 +8,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  errorWrapper: {
+    height: '100%',
+    width: '80%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: '30%'
+  },
   currentWeather: {
     width: '80%',
     height: '28%',

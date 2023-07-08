@@ -31,7 +31,8 @@ const Favourites = ({navigation}: Props) => {
 
   return (
     <ScrollView
-      contentContainerStyle={{...appStyles.screen, minHeight: '100%'}}>
+      contentContainerStyle={{...appStyles.screen, minHeight: '100%'}}
+      showsVerticalScrollIndicator={false}>
       <Navbar
         right={
           <Icon source={icons.arrowLeft} onClick={() => navigation.goBack()} />

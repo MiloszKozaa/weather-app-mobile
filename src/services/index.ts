@@ -9,6 +9,7 @@ import {
 import {getItem, setItem, removeItem} from './storage/storage';
 import {getLocation} from './location/getLocation';
 import { postApi } from './api/callApi';
+import { getIconByName } from './icons/getIconByName';
 
 export {
   getBarWidth,
@@ -21,5 +22,6 @@ export {
   setItem,
   removeItem,
   getLocation,
-  postApi
+  postApi,
+  getIconByName
 };

@@ -34,6 +34,15 @@ const appStyles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  wrapperBorderWhite: {
+    backgroundColor: COLORS.background,
+    borderColor: COLORS.white,
+    borderWidth: SIZES.border,
+    borderRadius: SIZES.medium,
+    padding: SIZES.medium,
+    width: '100%',
+    height: '100%',
+  },
   loadingStyle: {
     width: '100%',
     height: '100%',

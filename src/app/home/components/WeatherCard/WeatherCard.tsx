@@ -1,5 +1,5 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import appStyles from '../../../../styles';
 import styles from './WeatherCard.styles';
 import Lottie from 'lottie-react-native';
@@ -7,6 +7,7 @@ import {animations} from '../../../../constants';
 import {ICurrentWeather} from '../../../../models/weather/current';
 import {DayShrotName} from '../../../../models/date/day';
 import {monthShortNames} from '../../../../models/date/month';
+import {getIconByName} from '../../../../services';
 
 interface WeatherCard {
   currentWeather: ICurrentWeather;
@@ -14,6 +15,10 @@ interface WeatherCard {
 
 const WeatherCard = ({currentWeather}: WeatherCard) => {
   const date = new Date(currentWeather.date);
+
+  const iconIndex = getIconByName.findIndex(icon =>
+    icon.names.find(name => name === currentWeather.icon),
+  );
 
   return (
     <View style={appStyles.wrapperColor}>
@@ -38,7 +43,7 @@ const WeatherCard = ({currentWeather}: WeatherCard) => {
         </View>
         <Lottie
           style={styles.animation}
-          source={animations.dayPartlyCloudy}
+          source={getIconByName[iconIndex].icon}
           autoPlay
           resizeMode="cover"
         />

@@ -1,4 +1,4 @@
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Text} from 'react-native';
 import React, {useState} from 'react';
 import {ISearchCity} from '../../models/city/city';
 import appStyles from '../../styles';
@@ -19,6 +19,7 @@ type Props = NativeStackScreenProps<RootStackParams, 'Search'>;
 const Search = ({navigation}: Props) => {
   const [cities, setCities] = useState<ISearchCity[]>([]);
   const [cityName, setCityName] = useState('');
+  const [error, setError] = useState('');
 
   const goToHome = (coord: ICoord) => {
     navigation.navigate('Home', coord);
@@ -28,13 +29,19 @@ const Search = ({navigation}: Props) => {
     const response = await postApi<ISearchCity[]>('api/search', {
       name: cityName,
     });
-
-    setCities(response.data as ISearchCity[]);
+    if (response.status === 'success') {
+      setCities(response.data as ISearchCity[]);
+      setError('');
+    }
+    if (response.status === 'error') {
+      setError(response.message);
+    }
   };
 
   return (
     <ScrollView
-      contentContainerStyle={{...appStyles.screen, minHeight: '100%'}}>
+      contentContainerStyle={{...appStyles.screen, minHeight: '100%'}}
+      showsVerticalScrollIndicator={false}>
       <Navbar
         right={
           <Icon source={icons.arrowLeft} onClick={() => navigation.goBack()} />
@@ -52,13 +59,17 @@ const Search = ({navigation}: Props) => {
           autoFocus
         />
 
-        {cities.map((city, key) => (
-          <Button
-            key={key}
-            name={`${city.name}, ${city.country}`}
-            onClick={() => goToHome(city.coord)}
-          />
-        ))}
+        {!error ? (
+          cities.map((city, key) => (
+            <Button
+              key={key}
+              name={`${city.name}, ${city.country}`}
+              onClick={() => goToHome(city.coord)}
+            />
+          ))
+        ) : (
+          <Text>error</Text>
+        )}
       </View>
     </ScrollView>
   );

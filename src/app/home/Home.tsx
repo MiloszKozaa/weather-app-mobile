@@ -1,8 +1,8 @@
-import {ScrollView, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {icons} from '../../constants';
 import appStyles from '../../styles';
-import {Icon, Loading, Navbar} from '../../components';
+import {Icon, Loading, Navbar, NotFound} from '../../components';
 import {WeatherCard, DaySelector, WeatherCharts} from './components';
 import styles from './Home.style';
 import {useFetch} from '../../hooks/useFetch';
@@ -40,6 +40,7 @@ const Home = ({navigation, route}: Props) => {
 
   useEffect(() => {
     if (data) {
+      console.log(data);
       setDayDisplayed(data.forecast[0].dateNumber);
     }
   }, [data]);
@@ -56,41 +57,47 @@ const Home = ({navigation, route}: Props) => {
           />
         }
       />
-      <View style={styles.wrapper}>
-        <View style={styles.currentWeather}>
-          {!isLoading && data ? (
-            <WeatherCard currentWeather={data.current} />
-          ) : (
-            <Loading />
-          )}
+      {error && !data && !isLoading ? (
+        <View style={styles.errorWrapper}>
+          <NotFound />
         </View>
-        {!isLoading && data ? (
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.scrollViewContent}
-            style={styles.daySelector}>
-            {data.forecast.map(({day, dateNumber}, key) => (
-              <DaySelector
-                key={key}
-                day={day}
-                dateNumber={dateNumber}
-                onClick={() => setDayDisplayed(dateNumber)}
-                isFocused={dayDisplayed === dateNumber}
-              />
-            ))}
-          </ScrollView>
-        ) : (
-          <Loading customStyle={styles.daySelectorLoading} />
-        )}
-        <View style={styles.weatherChart}>
+      ) : (
+        <View style={styles.wrapper}>
+          <View style={styles.currentWeather}>
+            {!isLoading && data ? (
+              <WeatherCard currentWeather={data.current} />
+            ) : (
+              <Loading />
+            )}
+          </View>
           {!isLoading && data ? (
-            <WeatherCharts forecast={data.forecast} date={dayDisplayed} />
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.scrollViewContent}
+              style={styles.daySelector}>
+              {data.forecast.map(({day, dateNumber}, key) => (
+                <DaySelector
+                  key={key}
+                  day={day}
+                  dateNumber={dateNumber}
+                  onClick={() => setDayDisplayed(dateNumber)}
+                  isFocused={dayDisplayed === dateNumber}
+                />
+              ))}
+            </ScrollView>
           ) : (
-            <Loading />
+            <Loading customStyle={styles.daySelectorLoading} />
           )}
+          <View style={styles.weatherChart}>
+            {!isLoading && data ? (
+              <WeatherCharts forecast={data.forecast} date={dayDisplayed} />
+            ) : (
+              <Loading />
+            )}
+          </View>
         </View>
-      </View>
+      )}
     </View>
   );
 };

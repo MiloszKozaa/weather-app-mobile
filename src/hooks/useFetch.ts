@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
-import { postApi } from '../services';
+import {postApi} from '../services';
+import {IResponse} from '../models/api/response';
 
 export const useFetch = <IData>(endpoint: string, body: any) => {
   const [data, setData] = useState<IData>();
@@ -11,17 +12,19 @@ export const useFetch = <IData>(endpoint: string, body: any) => {
   const fetchData = async () => {
     setIsLoading(true);
 
-    const response = await postApi(endpoint, body)
-
-    if (response.status < 200 && response.status >= 300) {
-      setError(response.error);
+    const response = (await postApi(endpoint, body)) as IResponse<IData>;
+    console.log(await response);
+    if (response.status === 'error') {
+      setError(response.message);
       setIsLoading(false);
       return;
     }
 
-    setData(response.data as IData);
-    setIsLoading(false);
-    return;
+    if (response.status === 'success') {
+      setData(response.data as IData);
+      setIsLoading(false);
+      return;
+    }
   };
 
   useEffect(() => {

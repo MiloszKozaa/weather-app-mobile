@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
     height: '15%',
   },
   unit: {
-    fontFamily: FONTS.bold,
-    color: COLORS.accessory,
+    fontFamily: FONTS.semiBold,
+    color: COLORS.white,
     fontSize: SIZES.medium,
   },
   buttonsWrapper: {
